@@ -16,8 +16,13 @@ class Admin extends CI_Controller
 
     public function gacha()
     {
+
+        $data['title'] = 'Gacha';
         $session = $this->session->userdata();
-        $data['user'] = $this->db->get_where('user', ['email' => $session['email']])->row_array();
-        $this->load->view('admin/gacha');        
+        $this->db->select('gambar');
+        $data['user'] = $this->db->get('user')->result_array();
+        
+        $this->load->view('admin/gacha',$data);
+              
     }
 }
